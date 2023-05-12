@@ -1,4 +1,4 @@
-# MORPION 
+# Morpion
 
 #### par Abraham GAULT
 
