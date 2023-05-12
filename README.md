@@ -1,4 +1,4 @@
-# Morpion
+# MORPION 
 
 #### par Abraham GAULT
 
@@ -12,7 +12,7 @@ Le plateau est notamment fait à partir d'une liste de liste contenant des point
 
 ## La classe Profil
 
-
+La classe Profil
 
 ## La fonction tri
 
