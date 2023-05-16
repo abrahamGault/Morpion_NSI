@@ -1,6 +1,6 @@
 import random
 from profil import Profil
-from tri import tri 
+from tri import tri
 
 plateau = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
 
@@ -83,9 +83,12 @@ def main():
 
 	if joueur == 0 :
 		joueur2.victoire()
+		joueur1.defaite()
 
 	elif joueur == 1 :
 		joueur1.victoire()
+		joueur2.defaite()
 
 if __name__ == "__main__":	
 	main()
+	

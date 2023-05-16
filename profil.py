@@ -1,28 +1,32 @@
 class Profil:
     def __init__(self):
-        self.coup = 0 #nombres de coups que le joueur a effectué
-
-    def selecProfil(self):
         f = open("score.csv", "r")
-        table = [ligne.rstrip().split(",") for ligne in f]
+        self.table = [ligne.rstrip().split(",") for ligne in f]
+
+        #converti les valeurs contenues en chaines de caractère en nombres flottants       
+        for i in self.table[1:]:
+            for j in range(1, len(i)):
+                i[j] = float(i[j])
         
-        rep = input("Si vous disposez déjà d'un profil tapez o, sinon tapez n pour créer un nouveau profil: ").strip(" ")
+        f.close()
+       
+    def selecProfil(self):
+        rep = input("Si vous disposez déjà d'un profil tapez 'o', sinon tapez 'n' pour créer un nouveau profil: ").strip(" ")
         
         if rep == "o":
-            for i in table:
-                print(table.index(i), i)
+            for i in self.table[1:]:
+                print(f"{self.table.index(i)}, {i[0]}")
 
             pfofilNbr = input("Lequel êtes-vous ? (répondez par le nombre correspondant apparaissant devant): ")
+            
+            for j in self.table[1:] :
+                if pfofilNbr == self.table.index(j):
+                   self.nom = j[0]
             #afficher nom de profil et sélectionner avec nbr
-
-        f.close()
         
         if rep == "n":
-            #a refaire
-            f = open("score.csv", "a")
             self.nom = input("Entrez votre nom: ")
-            f.write(f"\n{self.nom}, 0, 0")
-            f.close()
+            self.table.append([self.nom, 0, 0, 0, 0])
 
     def victoire(self):
         print(f"{self.nom} a gagné")
