@@ -4,6 +4,16 @@ from tri import tri
 
 plateau = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
 
+f = open("score.csv", "r")
+table = [ligne.rstrip().split(",") for ligne in f]
+
+#converti les valeurs contenues en chaines de caractère en nombres flottants       
+for i in table[1:]:
+    for j in range(1, len(i)):
+        i[j] = float(i[j])
+
+f.close()
+
 def affiche(): 
 	#affiche le plateau de jeu dans la console de manière lisible
 	print("\033c") # "nettoie" la console
@@ -25,7 +35,7 @@ def choisir(joueur):
 	choix = True 
 	
 	while choix :	
-		v = input("Entrez les coordonnées(colonne, ligne) du point de votre choix(séparés par une virgule): ").strip().split(",")
+		v = input("Entrez les coordonnées(colonne, ligne) du point de votre choix (séparés par une virgule): ").strip().split(",")
 		x, y = int(v[0]), int(v[1])
 		
 		if coupPossible(x, y) == True:			
@@ -57,11 +67,11 @@ def aligner():
 
 def main():
 	joueur1 = Profil()
-	joueur1.selecProfil()
+	table = joueur1.selecProfil()
 	print(joueur1.nom,"est le joueur 1. Il/elle jouera avec X")
 	
 	joueur2 = Profil()
-	joueur2.selecProfil()
+	table = joueur2.selecProfil()
 
 	print(joueur2.nom, "est le joueur 2. Il/elle jouera avec O")
 	affiche()
@@ -72,22 +82,20 @@ def main():
 		if joueur == 0 :
 			print("C'est à", joueur1.nom,"de jouer")
 			choisir(joueur)
-			joueur1.coup += 1
 			joueur = 1
 
 		elif joueur == 1 :
 			print("C'est à", joueur2.nom,"de jouer")
 			choisir(joueur)
-			joueur2.coup += 1
 			joueur = 0
 
 	if joueur == 0 :
-		joueur2.victoire()
-		joueur1.defaite()
+		table = joueur2.victoire()
+		table = joueur1.defaite()
 
 	elif joueur == 1 :
-		joueur1.victoire()
-		joueur2.defaite()
+		table = joueur1.victoire()
+		table = joueur2.defaite()
 
 if __name__ == "__main__":	
 	main()
