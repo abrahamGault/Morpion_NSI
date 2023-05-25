@@ -1,12 +1,6 @@
 import random
 from profil import Profil
 
-#variables servant à faciliter la lisibilité pour les index de liste
-victoires = 1
-défaites = 2
-ratio_vd = 3
-serie_victoire = 4
-
 plateau = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
 
 f = open("score.csv", "r")
@@ -23,7 +17,7 @@ def tri(lst, ind):#la variable ind correspond à la variable selon laquelle trie
     if len(lst) <= 1:
         return lst
     else:
-        return fusion(tri([lst.pop(i) for i in range(round(len(lst) / 2))]), tri(lst), ind)
+        return fusion(tri([lst.pop(i) for i in range(round(len(lst) / 2))], ind), tri(lst, ind), ind)
 
 def fusion(lstA, lstB, ind): #idem
     if lstA == []:
@@ -32,14 +26,19 @@ def fusion(lstA, lstB, ind): #idem
     if lstB == []:
         return lstA
     
-    if lstA[0][ind] <= lstB[0][ind]:
-        return [lstA[0]] + fusion(lstA[1:], lstB)
+    if lstA[0][ind] >= lstB[0][ind]:
+        return [lstA[0]] + fusion(lstA[1:], lstB, ind)
 
     else : 
-        return [lstB[0]] + fusion(lstA, lstB[1:])
+        return [lstB[0]] + fusion(lstA, lstB[1:], ind)
 
 def stats(lst):
-	ind = input("Choisissez selon quelle catégorie les statistiques seront triées")
+	print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
+	ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
+
+	lst = tri(lst, ind)
+	for i in lst:
+		print(i[0])
 
 def affiche(): 
 	#affiche le plateau de jeu dans la console de manière lisible
@@ -143,7 +142,12 @@ def main():
 
 if __name__ == "__main__":	
 	try:
-		main()
+		rep = input("Appuyez sur 'j' pour jouer et sur 's' pour voir les statistiques de joueurs: ")
+		if rep.rstrip() == "j":
+			main()
+
+		if rep.rstrip() == "s":
+			stats(table[1:])
 
 	except KeyboardInterrupt:
 		print("\n")
