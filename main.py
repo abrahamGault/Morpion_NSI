@@ -1,6 +1,11 @@
 import random
 from profil import Profil
-from tri import tri
+
+#variables servant à faciliter la lisibilité pour les index de liste
+victoires = 1
+défaites = 2
+ratio_vd = 3
+serie_victoire = 4
 
 plateau = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
 
@@ -9,10 +14,32 @@ table = [ligne.rstrip().split(",") for ligne in f]
 
 #converti les valeurs contenues en chaines de caractère en nombres flottants       
 for i in table[1:]:
-    for j in range(1, len(i)):
-        i[j] = float(i[j])
+    for j in i[1:]:
+	    j = float(j)
 
 f.close()
+
+def tri(lst, ind):#la variable ind correspond à la variable selon laquelle trier la liste (ex: selon le nbr de victoires ou de victoires consécutives)
+    if len(lst) <= 1:
+        return lst
+    else:
+        return fusion(tri([lst.pop(i) for i in range(round(len(lst) / 2))]), tri(lst), ind)
+
+def fusion(lstA, lstB, ind): #idem
+    if lstA == []:
+        return lstB
+    
+    if lstB == []:
+        return lstA
+    
+    if lstA[0][ind] <= lstB[0][ind]:
+        return [lstA[0]] + fusion(lstA[1:], lstB)
+
+    else : 
+        return [lstB[0]] + fusion(lstA, lstB[1:])
+
+def stats(lst):
+	ind = input("Choisissez selon quelle catégorie les statistiques seront triées")
 
 def affiche(): 
 	#affiche le plateau de jeu dans la console de manière lisible
@@ -55,23 +82,33 @@ def choisir(joueur):
 
 def aligner():
 	Point = "."
+
 	for i in range(3):
 		if (plateau[0][i] == "X" and plateau[1][i] == "X" and plateau[2][i] == "X") or (plateau[0][i] == "O" and plateau[1][i] == "O" and plateau[2][i] == "O"):
 			return True
+		
+	for i in range(3):
+		if(plateau[i][0] == "X" and plateau[i][1] == "X" and plateau[i][2] =="X" ) or (plateau[i][0] == "O" and plateau[i][1] == "O" and plateau[i][2] == "O"):
+			return True
+
 	if ((plateau[0][0] == "X" and plateau[1][1] == "X" and plateau[2][2] == "X" ) or (plateau[0][0] == "O" and plateau[1][1] == "O" and plateau[2][2] == "O" )) or ((plateau[0][2] == "X" and plateau[1][1] == "X" and plateau[2][0] == "X" ) or (plateau[0][2] == "O" and plateau[1][1] == "O" and plateau[2][0] == "O" )):
 		return True
+	
 	if Point in plateau[0] or Point in plateau[1] or Point in plateau[2] :
 		return False
+	
 	print('égalité')
 	exit()		
 
 def main():
+	global table
+
 	joueur1 = Profil()
-	table = joueur1.selecProfil()
+	table = joueur1.selecProfil(table)
 	print(joueur1.nom,"est le joueur 1. Il/elle jouera avec X")
 	
 	joueur2 = Profil()
-	table = joueur2.selecProfil()
+	table = joueur2.selecProfil(table)
 
 	print(joueur2.nom, "est le joueur 2. Il/elle jouera avec O")
 	affiche()
@@ -90,13 +127,24 @@ def main():
 			joueur = 0
 
 	if joueur == 0 :
-		table = joueur2.victoire()
-		table = joueur1.defaite()
+		table = joueur2.victoire(table)
+		table = joueur1.defaite(table)
 
 	elif joueur == 1 :
-		table = joueur1.victoire()
-		table = joueur2.defaite()
+		table = joueur1.victoire(table)
+		table = joueur2.defaite(table)
+
+	fichier = open("score.csv", "w")
+	
+	for i in table:
+		for j in i:
+			fichier.write(f"{str(j)}, ")
+		fichier.write("\n")
 
 if __name__ == "__main__":	
-	main()
-	
+	try:
+		main()
+
+	except KeyboardInterrupt:
+		print("\n")
+		print("La partie ne sera pas enregistrée")

@@ -1,4 +1,3 @@
-# MORPION 
 
 #### par Abraham GAULT
 
@@ -12,21 +11,10 @@ Le plateau est notamment fait à partir d'une liste de liste contenant des point
 
 ## La classe Profil
 
-La classe Profil
+La classe Profil 
 
-## La fonction tri
+## La fonction stats
 
 L'algorithme derrière la __fonction__ tri est un algorithme de __tri fusion__ fait à partir de __pseudo-code__ trouvé sur [Wikipédia](https://fr.wikipedia.org/wiki/Tri_fusion).
 Le __choix de l'algorithme__ importe *peu* en raison de la faible taille des __données__.
 
-```python
-from tri import tri
-
-lst = [5, 6, 3, 1, 2]
-
-print(tri(lst))
-```
-
-```bash
->>> [1, 2, 3, 5, 6]
-```
