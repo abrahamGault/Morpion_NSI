@@ -1,5 +1,5 @@
 # LE MORPION
-#### par Abraham GAULT
+>par Abraham GAULT
 
 Voici un projet de __morpion__. Le jeu en lui-même a été réalisé pour un projet guidé en cours de __NSI__.
 Le système de __score__ a été ajouté à l'occasion d'un autre projet en NSI impliquant un __algorithme de tri__ et des __opérations fichiers__.
@@ -12,11 +12,11 @@ Le plateau est notamment fait à partir d'une liste de liste contenant des point
 ## La classe Profil
 
 La classe Profil est composée de trois méthodes. :  
-* La première, selecProfil(), permet au joueur de selectionner son profil préexistant ou d'en créer un nouveau. La fonction retourne une liste afin d'enregistrer les modifications faite à liste dans la méthode et d'appliquer ces modifications à la liste table dans le fichier main. 
+* La première, __selecProfil()__, permet au joueur de selectionner son profil préexistant ou d'en créer un nouveau. La fonction retourne une liste afin d'enregistrer les modifications faite à liste dans la méthode et d'appliquer ces modifications à la liste table dans le fichier main. 
 
-* La seconde, victoire(), est appelée lorsque le joueur a gagné. Nous ajoutons donc 1 à son nombre de victoires, son nombre de défaites reste inchangé, son ratio victoire/défaite sera mis à jour et si le joueur n'a jamais perdu son ratio sera égal à son nombre de victoire car on ne peut diviser par zéro. Nous ajoutons également 1 à sa série de victoires
+* La seconde, __victoire()__, est appelée lorsque le joueur a gagné. Nous ajoutons donc 1 à son nombre de victoires, son nombre de défaites reste inchangé, son ratio victoire/défaite sera mis à jour et si le joueur n'a jamais perdu son ratio sera égal à son nombre de victoire car on ne peut diviser par zéro. Nous ajoutons également 1 à sa série de victoires
 
-* La dernière défaite
+* La dernière, __défaite()__, est appelée lorsque le joueur a perdu. Son nombre de victoires reste inchangé tandis que son nombre de défaites est augmenté de 1
 
 ## La fonction stats
 
