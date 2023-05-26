@@ -1,4 +1,4 @@
-joueur, victoires, defaites, ratio_v/d, serie_victoire
-abraham,   4.0,   0,   4.0,   4.0 
-bastien, 1.0,  2.0, 0.5, 1.0 
-zarathoustra, 0.0, 7.0, 0.0, 0.0
+joueur,  victoires,  defaites,  ratio_v/d,  ratio_v/d
+abraham, 5.0, 0.0, 5.0, 5.0
+bastien, 1.0, 2.0, 0.5, 0.5
+zarathoustra, 0.0, 8.0, 0.0, 0.0

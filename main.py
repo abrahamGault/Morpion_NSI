@@ -124,13 +124,14 @@ def main():
 		table = joueur1.victoire(table)
 		table = joueur2.defaite(table)
 
-	#réecriture du fichier csv avec
+	#réecriture du fichier csv avec les modifications de 'table'
 	fichier = open("score.csv", "w")
 	
-	for i in table:
-		for j in i:
-			fichier.write(f"{str(j)}, ")
-		fichier.write("\n")
+	for i in range(len(table)):
+		for j in range(len(table[i]) - 1):
+			s = f"{str(table[i][j])}"
+			fichier.write(f"{str(table[i][j])}, ")
+		fichier.write(f"{str(table[i][j])}\n")
 
 	fichier.close()
 
