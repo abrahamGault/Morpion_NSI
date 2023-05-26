@@ -14,34 +14,27 @@ for i in table[1:]:
 f.close()
 
 def tri(lst, ind):#la variable ind correspond à la variable selon laquelle trier la liste (ex: selon le nbr de victoires ou de victoires consécutives)
-    if len(lst) <= 1:
-        return lst
-    else:
-        return fusion(tri([lst.pop(i) for i in range(round(len(lst) / 2))], ind), tri(lst, ind), ind)
 
-def fusion(lstA, lstB, ind): #idem
-    if lstA == []:
-        return lstB
-    
-    if lstB == []:
-        return lstA
-    
-    if lstA[0][ind] >= lstB[0][ind]:
-        return [lstA[0]] + fusion(lstA[1:], lstB, ind)
+	for j in range(1, len(lst)):
+		cle = lst[j][ind];print(lst[j])
+		i = j - 1
 
-    else : 
-        return [lstB[0]] + fusion(lstA, lstB[1:], ind)
+		while i >= 0 and lst[i][ind] > cle:
+			lst[i + 1][ind] = lst[i][ind]
+			i = i - 1
+		lst[i + 1][ind] = cle
+
+	return lst
+
 
 def stats(lst):
 	print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
 	ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
 
-	lst = tri(lst, ind)
-	for i in lst:
+	for i in tri(lst, ind):
 		print(i[0])
 
-def affiche(): 
-	#affiche le plateau de jeu dans la console de manière lisible
+def affiche(): #affiche le plateau de jeu dans la console de manière lisible
 	print("\033c") # "nettoie" la console
 	print("Plateau :\n")
 	print("\t \t","  0 1 2")
@@ -54,10 +47,10 @@ def affiche():
 				 	
 		print(plateau[j][-1]) 
 
-def coupPossible(x,y):
+def coupPossible(x,y): #vérifie si la case choisie par le joueur est disponible ou non
 	return plateau[y][x] == "."
 
-def choisir(joueur):
+def choisir(joueur): #Permet aux joueurs de choisir leur case selon la disponibilité des cases restantes
 	choix = True 
 	
 	while choix :	
