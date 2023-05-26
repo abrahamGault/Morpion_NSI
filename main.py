@@ -79,17 +79,18 @@ def choisir(joueur):
 			continue
 
 
-def aligner():
+def aligner(): #fonction vérifiant si l'un des joueurs a gagné
 	Point = "."
-
+	
+	#verif lignes
 	for i in range(3):
 		if (plateau[0][i] == "X" and plateau[1][i] == "X" and plateau[2][i] == "X") or (plateau[0][i] == "O" and plateau[1][i] == "O" and plateau[2][i] == "O"):
 			return True
-		
+	#verif lignes	
 	for i in range(3):
 		if(plateau[i][0] == "X" and plateau[i][1] == "X" and plateau[i][2] =="X" ) or (plateau[i][0] == "O" and plateau[i][1] == "O" and plateau[i][2] == "O"):
 			return True
-
+	#verif diagonale
 	if ((plateau[0][0] == "X" and plateau[1][1] == "X" and plateau[2][2] == "X" ) or (plateau[0][0] == "O" and plateau[1][1] == "O" and plateau[2][2] == "O" )) or ((plateau[0][2] == "X" and plateau[1][1] == "X" and plateau[2][0] == "X" ) or (plateau[0][2] == "O" and plateau[1][1] == "O" and plateau[2][0] == "O" )):
 		return True
 	
@@ -112,8 +113,10 @@ def main():
 	print(joueur2.nom, "est le joueur 2. Il/elle jouera avec O")
 	affiche()
 	
+	#le jeu choisi aléatoirment le jouer qui débute
 	joueur = random.randint(0,1)
 
+	#tant que personne n'a gagné le jeu continue
 	while aligner() == False :
 		if joueur == 0 :
 			print("C'est à", joueur1.nom,"de jouer")
@@ -133,6 +136,7 @@ def main():
 		table = joueur1.victoire(table)
 		table = joueur2.defaite(table)
 
+	#réecriture du fichier csv avec
 	fichier = open("score.csv", "w")
 	
 	for i in table:
