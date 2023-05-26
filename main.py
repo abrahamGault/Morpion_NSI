@@ -15,20 +15,15 @@ f.close()
 
 def tri(lst, ind):#la variable ind correspond à la variable selon laquelle trier la liste (ex: selon le nbr de victoires ou de victoires consécutives)
 
-	for j in range(1, len(lst) - 1):
-		cle = lst[j][ind]
-		i = j - 1
+	for i in range(len(lst) - 1, 1, -1):
+		for j in range(i - 1):
+			if lst[j + 1][ind] > lst[j][ind]:
+				lst[j+ 1], lst[j] = lst[j], lst[j + 1] 
 
-		while i >= 0 and lst[i][ind] > cle:
-			lst[i + 1] = lst[i]
-			i = i - 1
-		lst[i + 1] = cle
-	
-	print(lst)
 	return lst
 
-
 def stats(lst):
+	
 	print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
 	ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
 
@@ -145,8 +140,8 @@ if __name__ == "__main__":
 
 		if rep.rstrip() == "s":
 			table = stats(table[1:])
-			for i in table:
-				print(i[0])
+			for i in range(len(table)):
+				print(i + 1, table[i][0])
 
 	except KeyboardInterrupt:
 		print("\n")
