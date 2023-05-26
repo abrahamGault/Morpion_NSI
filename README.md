@@ -1,4 +1,4 @@
-#Le Morpion
+# LE MORPION
 #### par Abraham GAULT
 
 Voici un projet de __morpion__. Le jeu en lui-même a été réalisé pour un projet guidé en cours de __NSI__.
@@ -17,4 +17,3 @@ La classe Profil
 
 L'algorithme derrière la __fonction__ tri est un algorithme de __tri fusion__ fait à partir de __pseudo-code__ trouvé sur [Wikipédia](https://fr.wikipedia.org/wiki/Tri_fusion).
 Le __choix de l'algorithme__ importe *peu* en raison de la faible taille des __données__.
-
