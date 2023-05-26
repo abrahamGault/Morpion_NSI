@@ -7,23 +7,24 @@ f = open("score.csv", "r")
 table = [ligne.rstrip().split(",") for ligne in f]
 
 #converti les valeurs contenues en chaines de caractère en nombres flottants       
-for i in table[1:]:
-    for j in i[1:]:
-	    j = float(j)
-
+for i in range(1, len(table)):
+	for j in range(1, len(table[i])):
+		table[i][j] = float(table[i][j])
+		
 f.close()
 
 def tri(lst, ind):#la variable ind correspond à la variable selon laquelle trier la liste (ex: selon le nbr de victoires ou de victoires consécutives)
 
-	for j in range(1, len(lst)):
-		cle = lst[j][ind];print(lst[j])
+	for j in range(1, len(lst) - 1):
+		cle = lst[j][ind]
 		i = j - 1
 
 		while i >= 0 and lst[i][ind] > cle:
-			lst[i + 1][ind] = lst[i][ind]
+			lst[i + 1] = lst[i]
 			i = i - 1
-		lst[i + 1][ind] = cle
-
+		lst[i + 1] = cle
+	
+	print(lst)
 	return lst
 
 
@@ -31,8 +32,7 @@ def stats(lst):
 	print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
 	ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
 
-	for i in tri(lst, ind):
-		print(i[0])
+	return tri(lst, ind)
 
 def affiche(): #affiche le plateau de jeu dans la console de manière lisible
 	print("\033c") # "nettoie" la console
@@ -144,7 +144,9 @@ if __name__ == "__main__":
 			main()
 
 		if rep.rstrip() == "s":
-			stats(table[1:])
+			table = stats(table[1:])
+			for i in table:
+				print(i[0])
 
 	except KeyboardInterrupt:
 		print("\n")
