@@ -16,7 +16,7 @@ La classe Profil est composée de trois méthodes. :
 
 * La seconde, __victoire()__, est appelée lorsque le joueur a gagné. Nous ajoutons donc 1 à son nombre de victoires, son nombre de défaites reste inchangé, son ratio victoire/défaite sera mis à jour et si le joueur n'a jamais perdu son ratio sera égal à son nombre de victoire car on ne peut diviser par zéro. Nous ajoutons également 1 à sa série de victoires
 
-* La dernière, __défaite()__, est appelée lorsque le joueur a perdu. Son nombre de victoires reste inchangé tandis que son nombre de défaites est augmenté de 1
+* La dernière, __défaite()__, est appelée lorsque le joueur a perdu. Son nombre de victoires reste inchangé tandis que son nombre de défaites est augmenté de 1, son ratio victoires/défaite sera mis à jour mais nous ne risquons pas de diviser par zéro car le nombre de défaites du joueur est forcément >= 1. Sa série de victoire est elle nulle.
 
 ## La fonction stats
 

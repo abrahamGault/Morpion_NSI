@@ -132,6 +132,8 @@ def main():
 			fichier.write(f"{str(j)}, ")
 		fichier.write("\n")
 
+	fichier.close()
+
 if __name__ == "__main__":	
 	try:
 		rep = input("Appuyez sur 'j' pour jouer et sur 's' pour voir les statistiques de joueurs: ")
