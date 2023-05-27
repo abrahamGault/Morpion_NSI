@@ -1,7 +1,7 @@
 import random
 from profil import Profil
 
-plateau = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
+plateau = [[".", ".", "."],[".", ".", "."],[".", ".", "."]] #plateau contenant les cases du morpion
 
 f = open("score.csv", "r")
 table = [ligne.rstrip().split(",") for ligne in f]
@@ -22,7 +22,7 @@ def tri(lst, ind):#la variable ind correspond à la variable selon laquelle trie
 
 	return lst
 
-def stats(lst):
+def stats(lst): 
 	
 	print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
 	ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
@@ -88,15 +88,15 @@ def aligner(): #fonction vérifiant si l'un des joueurs a gagné
 	print('égalité')
 	exit()		
 
-def main():
+def main(): #fonction principale pour jouer
 	global table
 
 	joueur1 = Profil()
-	table = joueur1.selecProfil(table)
+	table = joueur1.selecProfil(table) #ajoute les modifications qui ont pu être faite
 	print(joueur1.nom,"est le joueur 1. Il/elle jouera avec X")
 	
 	joueur2 = Profil()
-	table = joueur2.selecProfil(table)
+	table = joueur2.selecProfil(table) #idem
 
 	print(joueur2.nom, "est le joueur 2. Il/elle jouera avec O")
 	affiche()
@@ -109,12 +109,12 @@ def main():
 		if joueur == 0 :
 			print("C'est à", joueur1.nom,"de jouer")
 			choisir(joueur)
-			joueur = 1
+			joueur = 1 #change le joueur qui placera son
 
 		elif joueur == 1 :
 			print("C'est à", joueur2.nom,"de jouer")
 			choisir(joueur)
-			joueur = 0
+			joueur = 0 #idem
 
 	if joueur == 0 :
 		table = joueur2.victoire(table)
@@ -129,13 +129,13 @@ def main():
 	
 	for i in range(len(table)):
 		for j in range(len(table[i]) - 1):
-			s = f"{str(table[i][j])}"
 			fichier.write(f"{str(table[i][j])}, ")
-		fichier.write(f"{str(table[i][j])}\n")
+		fichier.write(f"{str(table[i][j + 1])}\n") #empêche de mettre une virgule à la fin d'une ligne
 
 	fichier.close()
 
 if __name__ == "__main__":	
+	
 	try:
 		rep = input("Appuyez sur 'j' pour jouer et sur 's' pour voir les statistiques de joueurs: ")
 		if rep.rstrip() == "j":
@@ -147,5 +147,4 @@ if __name__ == "__main__":
 				print(i + 1, table[i][0])
 
 	except KeyboardInterrupt:
-		print("\n")
-		print("La partie ne sera pas enregistrée")
+		print("\nLa partie ne sera pas enregistrée")

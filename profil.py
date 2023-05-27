@@ -31,8 +31,8 @@ class Profil:
                 i[1] = float(i[1]); i[4] = float(i[4])
                 i[1] += 1; i[3] = i[1]; i[4] += 1 #augmente le nombre de victoires, met à jour le ratio de victoire défaite et la série de victoires 
 
-                if float(i[2]) != 0.0 : #traite le cas ou le joueur n'a jamais perdu car on ne peut pas diviser par zéro
-                    i[3] = float(i[1])/float(i[2])
+                if float(i[2])!= 0.0 : #traite le cas ou le joueur n'a jamais perdu car on ne peut pas diviser par zéro
+                    i[3] = round(float(i[1])/float(i[2])) #arrondi pour éviter les nombres trop grands
 
         #change la table avec les informations ajoutées/modifiées
         return table
@@ -42,7 +42,7 @@ class Profil:
         for i in table[1:]:
             if i[0].rstrip() == self.nom:
                 i[2] = float(i[2])
-                i[2] += 1;i[3] = float(i[1])/float(i[2]);i[4] = 0 #augment le nombre de défaites, met à jour le ratio victoire défaite et la série de victoires (qui sera nulle)
+                i[2] += 1;i[3] = round(float(i[1])/float(i[2]));i[4] = 0 #augment le nombre de défaites, met à jour le ratio victoire défaite et la série de victoires (qui sera nulle)
 
         #ici nous ne risquons pas de diviser par zéro car le joueur a forcement deja perdu
 
