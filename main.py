@@ -22,8 +22,6 @@ def tri(lst, ind):#la variable ind correspond à la variable selon laquelle trie
 
 	return lst
 
-def stats(lst, ind): 
-	return tri(lst, ind)
 
 def affiche(): #affiche le plateau de jeu dans la console de manière lisible
 	print("\033c") # "nettoie" la console
@@ -141,7 +139,7 @@ if __name__ == "__main__":
 			print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
 			ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
 
-			table = stats(table[1:], ind)
+			table = tri(table[1:], ind)
 			for i in range(len(table)):
 				print(i + 1, table[i][0], "avec", table[i][ind])
 

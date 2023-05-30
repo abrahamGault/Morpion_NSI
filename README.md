@@ -19,7 +19,7 @@ La classe Profil est composée de trois méthodes. :
 
 * La dernière, __défaite()__, est appelée lorsque le joueur a perdu. Son nombre de victoires reste inchangé tandis que son nombre de défaites est augmenté de 1, son ratio victoires/défaite sera mis à jour mais nous ne risquons pas de diviser par zéro car le nombre de défaites du joueur est forcément >= 1. Sa série de victoire est elle nulle.
 
-## La fonction stats
+## La fonction tri
 
 L'algorithme derrière la __fonction__ tri est un algorithme de __tri à bulle__ fait à partir de __pseudo-code__ trouvé dans le cours de NSI (le chapitre 9).
 Le __choix de l'algorithme__ importe *peu* en raison de la faible taille des __données__.
