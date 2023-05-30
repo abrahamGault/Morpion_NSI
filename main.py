@@ -3,6 +3,8 @@ from profil import Profil
 
 plateau = [[".", ".", "."],[".", ".", "."],[".", ".", "."]] #plateau contenant les cases du morpion
 
+game_state = True #variable définissant si le jeu tourne ou non
+
 f = open("score.csv", "r")
 table = [ligne.rstrip().split(",") for ligne in f]
 
@@ -128,20 +130,39 @@ def main(): #fonction principale pour jouer
 
 	fichier.close()
 
+
 if __name__ == "__main__":	
-	
+
 	try:
-		rep = input("Appuyez sur 'j' pour jouer et sur 's' pour voir les statistiques de joueurs: ")
-		if rep.rstrip() == "j":
-			main()
+		while(game_state == True):
+			while True:
+				rep = input("Appuyez sur 'j' pour jouer et sur 's' pour voir le WALL OF FAME: ").rstrip()
+				if (rep == "j") or (rep == "s"):
+					break
 
-		if rep.rstrip() == "s":
-			print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
-			ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
+			if rep == "j":
+				main()
 
-			table = tri(table[1:], ind)
-			for i in range(len(table)):
-				print(i + 1, table[i][0], "avec", table[i][ind])
+			if rep == "s":
+				print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
+				ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
+
+				table = tri(table[1:], ind)
+				for i in range(len(table)):
+					print(i + 1, table[i][0], "avec", table[i][ind])
+
+			while True:
+				oui_ou_non = input("Voulez-vous continuer à jouer ? Répondez 'a' pour continuer et 'n' pour arrêter: ")
+				if (oui_ou_non == "a") or (oui_ou_non == 'n'):
+					break                                                                                                                                                                                          #je n'avais plus d'idée pour le nom de ma variable
+
+
+			if oui_ou_non == 'a':
+				game_state = True
+
+			if oui_ou_non == 'n':
+				game_state == False
+				break
 
 	except KeyboardInterrupt:
 		print("\nLa partie ne sera pas enregistrée")

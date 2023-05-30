@@ -3,21 +3,30 @@ class Profil:
         self.nom = ""
        
     def selecProfil(self, table):
-        rep = input("Si vous disposez déjà d'un profil tapez 'o', sinon tapez 'n' pour créer un nouveau profil: ").strip(" ")
-        
+        while True:
+            rep = input("Si vous disposez déjà d'un profil tapez 'o', sinon tapez 'n' pour créer un nouveau profil: ").strip(" ").lower()
+            if (rep == "o") or (rep == "n"):
+                break
+
         if rep == "o":
             for i in table[1:]:
                 print(f"{table.index(i)}, {i[0]}")
 
-            pfofilNbr = float(input("Lequel êtes-vous ? (répondez par le nombre correspondant apparaissant devant): "))
-            
+            while True:
+                profilNbr = float(input("Lequel êtes-vous ? (répondez par le nombre correspondant apparaissant devant): "))
+                if profilNbr < len(table):
+                    break
+
             for j in table[1:] :
-                if pfofilNbr == table.index(j):
+                if profilNbr == table.index(j):
                    self.nom = j[0]
             #afficher nom de profil et sélectionner avec nbr
         
         if rep == "n":
-            self.nom = input("Entrez votre nom: ")
+            while True:
+                self.nom = input("Entrez votre nom: ")
+                if self.nom != "":
+                    break
             table.append([self.nom, 0.0, 0.0, 0.0, 0.0])
 
         #change la table avec les informations ajoutées/modifiées
