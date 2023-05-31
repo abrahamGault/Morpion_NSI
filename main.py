@@ -70,7 +70,7 @@ def aligner(): #fonction vérifiant si l'un des joueurs a gagné
 	for i in range(3):
 		if (plateau[0][i] == "X" and plateau[1][i] == "X" and plateau[2][i] == "X") or (plateau[0][i] == "O" and plateau[1][i] == "O" and plateau[2][i] == "O"):
 			return True
-	#verif lignes	
+	#verif colonne
 	for i in range(3):
 		if(plateau[i][0] == "X" and plateau[i][1] == "X" and plateau[i][2] =="X" ) or (plateau[i][0] == "O" and plateau[i][1] == "O" and plateau[i][2] == "O"):
 			return True
