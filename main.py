@@ -147,9 +147,9 @@ if __name__ == "__main__":
 				print("1. Victoires \n2. Défaites \n3. Le Ratio Victoires/Défaites \n4. La série de Victoires")
 				ind = int(input("Choisissez selon quelle catégorie les statistiques seront triées: "))
 
-				table = tri(table[1:], ind)
-				for i in range(len(table)):
-					print(i + 1, table[i][0], "avec", table[i][ind])
+				table[1:] = tri(table[1:], ind)
+				for i in range(1, len(table)):
+					print(i, table[i][0], "avec", table[i][ind])
 
 			while True:
 				oui_ou_non = input("Voulez-vous continuer à jouer ? Répondez 'a' pour continuer et 'n' pour arrêter: ")
